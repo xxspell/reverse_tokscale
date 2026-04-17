@@ -1,0 +1,32 @@
+services:
+  emulator:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - tokscale_home:/root
+      - ./configs:/app/configs:ro
+    entrypoint:
+      - /bin/sh
+      - -lc
+    command:
+      - >
+        mkdir -p /root/.claude/projects /root/.codex/sessions; if [ -n "$${TOKSCALE_SMOKE_RUN_ID:-}" ]; then touch "/root/.claude/projects/$${TOKSCALE_SMOKE_RUN_ID}.marker"; touch "/root/.codex/sessions/$${TOKSCALE_SMOKE_RUN_ID}.marker"; fi; tokscale-activity-emulator /app/configs/heavy-human-like.yaml
+
+  tokscale:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - tokscale_home:/root
+    working_dir: /root
+    entrypoint:
+      - tokscale
+    command:
+      - --home
+      - /root
+      - --no-spinner
+      - --light
+
+volumes:
+  tokscale_home: {}
