@@ -12,7 +12,7 @@ services:
     command:
       - >
         mkdir -p /root/.claude/projects /root/.codex/sessions;
-        tokscale-activity-emulator /app/configs/heavy-human-like.yaml
+        tokscale-submit run /app/configs/heavy-human-like.yaml
     mem_limit: 24g
     memswap_limit: 32g
 

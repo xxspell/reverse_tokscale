@@ -4,14 +4,13 @@ use std::thread;
 use std::time::Duration as StdDuration;
 
 use anyhow::{bail, Context, Result};
-use chrono::{Duration, NaiveDate};
+use chrono::{Duration, Local, NaiveDate};
 use reqwest::blocking::Client;
 use serde::Deserialize;
 use serde_json::Value;
-use tokscale_activity_emulator::config::AppConfig;
-use tokscale_activity_emulator::direct_submit_payload::build_direct_submit_payload;
-use tokscale_activity_emulator::orchestrator::today_local;
-use tokscale_activity_emulator::submit_state::{
+use tokscale_submit_tool::config::AppConfig;
+use tokscale_submit_tool::direct_submit_payload::build_direct_submit_payload;
+use tokscale_submit_tool::submit_state::{
     checkpoint_submit_state_atomic, load_submit_state, SubmitState,
 };
 
@@ -199,7 +198,7 @@ fn cmd_run(args: &[String]) -> Result<()> {
             .unwrap_or("<none>")
     );
 
-    let target_to = to_arg.unwrap_or_else(today_local);
+    let target_to = to_arg.unwrap_or_else(|| Local::now().date_naive());
     let configured_start = cfg.runtime.start_day.unwrap_or(target_to);
     let default_from = submit_state
         .last_submitted_day

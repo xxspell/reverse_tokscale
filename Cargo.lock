@@ -1136,7 +1136,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "tokscale-activity-emulator"
+name = "tokscale-submit-tool"
 version = "0.1.0"
 dependencies = [
  "anyhow",

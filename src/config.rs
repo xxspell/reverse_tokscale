@@ -42,9 +42,6 @@ pub enum ClientMode {
 pub struct RuntimeConfig {
     pub start_day: Option<NaiveDate>,
     pub seed: u64,
-    pub state_path: String,
-    pub claude_output_path: String,
-    pub codex_output_path: String,
     pub submit_payload_output_path: Option<String>,
     pub submit_state_path: Option<String>,
 }
@@ -59,10 +56,6 @@ impl AppConfig {
     pub fn from_yaml_file(path: &Path) -> Result<Self> {
         let content = fs::read_to_string(path)?;
         Self::from_yaml_str(&content)
-    }
-
-    pub fn daily_tokens(&self) -> u64 {
-        self.daily_target.max_tokens
     }
 
     pub fn validate(&self) -> Result<()> {
@@ -108,12 +101,6 @@ impl AppConfig {
             }
         }
 
-        Self::validate_runtime_path(&self.runtime.state_path, "runtime.state_path")?;
-        Self::validate_runtime_path(
-            &self.runtime.claude_output_path,
-            "runtime.claude_output_path",
-        )?;
-        Self::validate_runtime_path(&self.runtime.codex_output_path, "runtime.codex_output_path")?;
         if let Some(path) = &self.runtime.submit_payload_output_path {
             Self::validate_runtime_path(path, "runtime.submit_payload_output_path")?;
         }
@@ -122,21 +109,6 @@ impl AppConfig {
         }
 
         Ok(())
-    }
-
-    pub fn resolved_state_path(&self) -> Result<PathBuf> {
-        Self::expand_home_path(&self.runtime.state_path, "runtime.state_path")
-    }
-
-    pub fn resolved_claude_output_path(&self) -> Result<PathBuf> {
-        Self::expand_home_path(
-            &self.runtime.claude_output_path,
-            "runtime.claude_output_path",
-        )
-    }
-
-    pub fn resolved_codex_output_path(&self) -> Result<PathBuf> {
-        Self::expand_home_path(&self.runtime.codex_output_path, "runtime.codex_output_path")
     }
 
     pub fn resolved_submit_payload_output_path(&self) -> Result<Option<PathBuf>> {

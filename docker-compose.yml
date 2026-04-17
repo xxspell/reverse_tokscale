@@ -11,7 +11,7 @@ services:
       - -lc
     command:
       - >
-        mkdir -p /root/.claude/projects /root/.codex/sessions; if [ -n "$${TOKSCALE_SMOKE_RUN_ID:-}" ]; then touch "/root/.claude/projects/$${TOKSCALE_SMOKE_RUN_ID}.marker"; touch "/root/.codex/sessions/$${TOKSCALE_SMOKE_RUN_ID}.marker"; fi; tokscale-activity-emulator /app/configs/heavy-human-like.yaml
+        mkdir -p /root/.claude/projects /root/.codex/sessions; if [ -n "$${TOKSCALE_SMOKE_RUN_ID:-}" ]; then touch "/root/.claude/projects/$${TOKSCALE_SMOKE_RUN_ID}.marker"; touch "/root/.codex/sessions/$${TOKSCALE_SMOKE_RUN_ID}.marker"; fi; tokscale-submit run /app/configs/heavy-human-like.yaml
 
   tokscale:
     build:

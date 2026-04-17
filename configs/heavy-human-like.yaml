@@ -12,8 +12,5 @@ client_mode: claude_only
 runtime:
   start_day: 2025-09-18
   seed: 42
-  state_path: /Users/xxspell/Code/reverse-tokscale/.worktrees/tokscale-emulator-v1/.tokscale/emulator-state.json
-  claude_output_path: /Users/xxspell/Code/reverse-tokscale/.worktrees/tokscale-emulator-v1/.tokscale/claude-activity.jsonl
-  codex_output_path: /Users/xxspell/Code/reverse-tokscale/.worktrees/tokscale-emulator-v1/.tokscale/codex-activity.jsonl
-  submit_payload_output_path: /Users/xxspell/Code/reverse-tokscale/.worktrees/tokscale-emulator-v1/.tokscale/submit-payload.json
-  submit_state_path: /Users/xxspell/Code/reverse-tokscale/.worktrees/tokscale-emulator-v1/.tokscale/submit-state.json
+  submit_payload_output_path: /Users/xxspell/Code/reverse-tokscale/.tokscale/submit-payload.json
+  submit_state_path: /Users/xxspell/Code/reverse-tokscale/.tokscale/submit-state.json

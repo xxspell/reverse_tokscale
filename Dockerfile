@@ -8,6 +8,6 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
-COPY --from=build /app/target/release/tokscale-activity-emulator /usr/local/bin/tokscale-activity-emulator
+COPY --from=build /app/target/release/tokscale-submit /usr/local/bin/tokscale-submit
 RUN npm install -g tokscale@latest
-CMD ["tokscale-activity-emulator"]
+CMD ["tokscale-submit"]
