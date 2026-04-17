@@ -1,0 +1,37 @@
+services:
+  emulator:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - tokscale_big_home:/root
+      - ./configs:/app/configs:ro
+    entrypoint:
+      - /bin/sh
+      - -lc
+    command:
+      - >
+        mkdir -p /root/.claude/projects /root/.codex/sessions;
+        tokscale-activity-emulator /app/configs/heavy-human-like.yaml
+    mem_limit: 24g
+    memswap_limit: 32g
+
+  tokscale:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - tokscale_big_home:/root
+    working_dir: /root
+    entrypoint:
+      - tokscale
+    command:
+      - --home
+      - /root
+      - --no-spinner
+      - --light
+    mem_limit: 24g
+    memswap_limit: 32g
+
+volumes:
+  tokscale_big_home: {}

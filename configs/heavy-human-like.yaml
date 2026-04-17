@@ -1,0 +1,19 @@
+daily_target:
+  min_tokens: 10000000000
+  max_tokens: 20000000000
+  hard_cap_tokens: 20000000000
+
+clients_mix:
+  claude_share: 1.0
+  codex_share: 0.0
+
+client_mode: claude_only
+
+runtime:
+  start_day: 2025-09-18
+  seed: 42
+  state_path: /Users/xxspell/Code/reverse-tokscale/.worktrees/tokscale-emulator-v1/.tokscale/emulator-state.json
+  claude_output_path: /Users/xxspell/Code/reverse-tokscale/.worktrees/tokscale-emulator-v1/.tokscale/claude-activity.jsonl
+  codex_output_path: /Users/xxspell/Code/reverse-tokscale/.worktrees/tokscale-emulator-v1/.tokscale/codex-activity.jsonl
+  submit_payload_output_path: /Users/xxspell/Code/reverse-tokscale/.worktrees/tokscale-emulator-v1/.tokscale/submit-payload.json
+  submit_state_path: /Users/xxspell/Code/reverse-tokscale/.worktrees/tokscale-emulator-v1/.tokscale/submit-state.json
